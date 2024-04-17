@@ -1,0 +1,15 @@
+{% extends 'base_page.html' %}
+{% block title %}
+New Profile
+{% endblock %}
+{% block content %}
+<div class="bodypad">
+<h2>Create User Profile</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create Profile</button>
+</form>
+</div>
+{% endblock %}
+

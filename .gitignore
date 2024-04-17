@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+accounts/__pycache__/
+csrequests/__pycache__/
+customers/__pycache__/
+service_requests/__pycache__/
+db.sqlite3

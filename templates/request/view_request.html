@@ -1,0 +1,59 @@
+{% extends 'base_page.html' %}
+{% block title %}
+View Request
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="bodypad">
+<h2>View Request</h2>
+<div>
+  Request ID: {{req.request_id}}
+</div>
+<div>
+  Description: {{req.description}}
+</div>
+<div>
+  Created At: {{req.created_at}}
+</div>
+<div>
+  Updated At: {{req.updated_at}}
+</div>
+<div>
+  Request Type:
+  {% if req.request_type == "BI" %}
+  Billing Issue
+  {% elif req.request_type == "NC" %}
+  New Connection
+  {% elif req.request_type == "LC" %}
+  Leakage Complaint
+  {% else %}
+  Other
+  {% endif %}
+</div>
+<div>
+  Status:
+  {% if req.status == "OP" %}
+  <span style="color:red">Open</span>
+  {% elif req.status == "IP" %}
+  <span style="color:yellow">In Progress</span>
+  {% elif req.status == "RE" %}
+  <span style="color:green">Resolved</span>
+  {% else %}
+  {% endif %}
+</div>
+  <br>
+<div>
+  {% if are_notes_available %}
+  <h5>Request Notes</h5>
+  {% for note in notes %}
+  <div>{{note.note}}</div>
+  <div>{{note.created_at}}</div>
+  <br>
+  {% endfor %}
+  {% endif %}
+</div>
+</div>
+{% endblock %}
+
+
+

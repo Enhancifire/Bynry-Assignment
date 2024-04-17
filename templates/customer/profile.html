@@ -1,0 +1,69 @@
+{% extends 'base_page.html' %}
+{% block title %}
+View Profile
+{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="bodypad">
+<h2>Hi, {{ customer.first_name }} {{ customer.last_name }}!</h2>
+
+{% if req_available %}
+<h4>Your Requests</h4>
+
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Request ID</th>
+      <!-- <th>Description</th> -->
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Request Type</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for req in requests %}
+    <tr>
+      <td>
+	<a href="/requests/{{req.request_id}}/">{{req.request_id}}</a>
+      </td>
+      <!-- <td> -->
+      <!-- Description: {{req.description}} -->
+      <!-- </td> -->
+      <td>
+	{{req.created_at}}
+      </td>
+      <td>
+	{{req.updated_at}}
+      </td>
+      <td>
+	{% if req.request_type == "BI" %}
+	Billing Issue
+	{% elif req.request_type == "NC" %}
+	New Connection
+	{% elif req.request_type == "LC" %}
+	Leakage Complaint
+	{% else %}
+	Other
+	{% endif %}
+      </td>
+      <td>
+	{% if req.status == "OP" %}
+	<span style="color:red">Open</span>
+	{% elif req.status == "IP" %}
+	<span style="color:yellow">In Progress</span>
+	{% elif req.status == "RE" %}
+	<span style="color:green">Resolved</span>
+	{% else %}
+	{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}
+
+
