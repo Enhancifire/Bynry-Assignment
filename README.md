@@ -15,4 +15,4 @@ $ python manage.py migrate
 ```shell
 $ python manage.py runserver
 ```
-5. Visit site at https://localhost:8000/
+5. Visit site at http://localhost:8000/
